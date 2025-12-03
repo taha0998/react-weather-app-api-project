@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import Card from "./components/Card";
 import TodayDisplay from "./components/TodayDisplay";
 import UnitContainer from "./components/UnitContainer";
+import Card from "./components/Card";
 
 const App = () => {
   const [location, setLocation] = useState(null);
@@ -27,7 +27,7 @@ const App = () => {
     const latitude = location?.latitude;
     const longitude = location?.longitude;
     fetch(
-      `https://www.7timer.info/bin/api.pl?lon=${longitude}&lat=${latitude}&product=civillight&output=json`
+      `http://www.7timer.info/bin/api.pl?lon=${longitude}&lat=${latitude}&product=civillight&output=json`
     )
       .then((response) => response.json())
       .then((json) => setData(json))
@@ -44,11 +44,19 @@ const App = () => {
   return (
     <div className="weather-app">
       <TodayDisplay today={data?.dataseries[0]} location={location} />
-      <div className="cards-container">
-        {data?.dataseries.map((day, index) => (
-          <Card key={index} day={day} index={index} unit={unit} />
-        ))}
-      </div>
+      {location != null && (
+        <div className="cards-container">
+          {data?.dataseries.map((day, index) => (
+            <Card
+              key={index}
+              day={day}
+              index={index}
+              unit={unit}
+              location={location}
+            />
+          ))}
+        </div>
+      )}
       <UnitContainer handleClick={handleClick} unit={unit} />
       {error}
     </div>
