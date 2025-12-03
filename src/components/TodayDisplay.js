@@ -11,14 +11,12 @@ const TodayDisplay = ({ today, location }) => {
           {location?.latitude.toFixed(2)}
         </h3>
       </div>
-{
-  location != null && (
-        <div className="info-container">{today?.weather && getIcon(today.weather)}</div>
-       )
-}
+      {location != null && (
+        <div className="info-container">
+          {today?.weather && getIcon(today.weather)}
+        </div>
+      )}
     </div>
   );
 };
 export default TodayDisplay;
-
-
