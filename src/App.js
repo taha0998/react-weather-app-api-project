@@ -27,7 +27,7 @@ const App = () => {
     const latitude = location?.latitude;
     const longitude = location?.longitude;
     fetch(
-      `http://www.7timer.info/bin/api.pl?lon=${longitude}&lat=${latitude}&product=civillight&output=json`
+      `https://www.7timer.info/bin/api.pl?lon=${longitude}&lat=${latitude}&product=civillight&output=json`
     )
       .then((response) => response.json())
       .then((json) => setData(json))
