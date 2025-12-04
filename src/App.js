@@ -18,7 +18,7 @@ const App = () => {
           setLocation(position.coords);
         },
         () => {
-          setError("Sorry, we cannot find your location");
+          setError("Location access is required to use this feature. Please enable it in your device settings.");
         }
       );
     }
